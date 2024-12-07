@@ -6,7 +6,7 @@ on:
       - main  # Trigger pipeline on pushes to the main branch
 
 env:
-  DOCKER_REGISTRY: "pampdi"
+  DOCKER_REGISTRY: "shivtestac/motataja"
   IMAGE_TAG: "latest"
   REMOTE_HOST: "125.17.72.92"
   DOCKER_USER: "shivtestac"
