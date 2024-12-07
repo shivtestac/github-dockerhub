@@ -47,13 +47,13 @@ jobs:
           export DOCKER_PASSWORD=$DOCKER_PASSWORD
 
           echo "--------------------------------------"
-          echo "DOCKER_USER: \$DOCKER_USER"
-          echo "DOCKER_REGISTRY: \$DOCKER_REGISTRY"
-          echo "IMAGE_TAG: \$IMAGE_TAG"
+          echo "DOCKER_USER: $DOCKER_USER"
+          echo "DOCKER_REGISTRY: $DOCKER_REGISTRY"
+          echo "IMAGE_TAG: $IMAGE_TAG"
           echo "--------------------------------------"
 
-          echo "\$DOCKER_PASSWORD" | docker login -u "\$DOCKER_USER" --password-stdin
-          docker pull \$DOCKER_REGISTRY:\$IMAGE_TAG
+          echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
+          docker pull $DOCKER_REGISTRY:\$IMAGE_TAG
           
           # Stop and remove previous containers
           docker ps -a --filter "name=^web2$" --format "{{.ID}}" | xargs -r -I {} docker rm -f {}
@@ -63,6 +63,6 @@ jobs:
           docker ps -a --filter "name=^web$" --format "{{.ID}}" | xargs -r -I {} docker container rm -f {}
 
           # Run new container
-          docker run -d --name web -p 80:80 \$DOCKER_REGISTRY:\$IMAGE_TAG
+          docker run -d --name web -p 80:80 $DOCKER_REGISTRY:$IMAGE_TAG
         EOF
 
